@@ -4,3 +4,7 @@ https://app.pluralsight.com/library/courses/react-state-managing/table-of-conten
 https://github.com/Annie-Huang/pluralsight-react-state
 ======================================
 
+C:\react\pluralsight-react-state>npm install
+C:\react\pluralsight-react-state>npm run start
+
+http://localhost:3000/
