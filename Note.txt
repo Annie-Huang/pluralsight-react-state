@@ -12,3 +12,17 @@ C:\react\pluralsight-react-state>npm run start
 http://localhost:3000/
 
 http://localhost:3001/products  << product list
+
+Uncontrolled component: React isn't controlling the selected value
+    <select id="size">
+Controlled component:
+    <select id="size" value={size}>     << Now the select is a controlled component. (React controls the selected value).
+
+React Event Handlers:
+onClick
+onChange
+onHover
+onBlur
+onSubmit
+onMouseover
+etc...
