@@ -2,9 +2,13 @@ Managing React State
 https://app.pluralsight.com/library/courses/react-state-managing/table-of-contents
 
 https://github.com/Annie-Huang/pluralsight-react-state
+source file is from the pluralsight zip.
+
 ======================================
 
 C:\react\pluralsight-react-state>npm install
 C:\react\pluralsight-react-state>npm run start
 
 http://localhost:3000/
+
+http://localhost:3001/products  << product list
