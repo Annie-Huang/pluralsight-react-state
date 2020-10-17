@@ -13,6 +13,8 @@ http://localhost:3000/
 
 http://localhost:3001/products  << product list
 
+========================================================
+
 Uncontrolled component: React isn't controlling the selected value
     <select id="size">
 Controlled component:
@@ -26,3 +28,10 @@ onBlur
 onSubmit
 onMouseover
 etc...
+
+When does React Render?
+- state change      << Can skip render via: shouldComponentUpdate, React.memo (that say, this optimazation are rarely necessary)
+- prop change       << Can skip render via: shouldComponentUpdate, React.memo, PureComponent (that say, this optimazation are rarely necessary)
+- parent renders    << the same as prop change
+- context change
+- React won't re-render when a plain variable changes
