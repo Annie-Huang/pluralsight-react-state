@@ -14,10 +14,22 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getProducts('shoes')
-      .then(response => setProducts(response))
-      .catch(e => setError(e))
-      .finally(() => setLoading(false)); // I thought finally only called in success. But seems to be called in error as well for promise.
+    // getProducts('shoes')
+    //   .then(response => setProducts(response))
+    //   .catch(e => setError(e))
+    //   .finally(() => setLoading(false)); // I thought finally only called in success. But seems to be called in error as well for promise.
+
+    async function init() { // Async/await is syntactic sugar over promises. The two can interact.
+      try {
+        const response = await getProducts('shoes');
+        setProducts(response);
+      } catch (e) {
+        setError(e);
+      } finally {
+        setLoading(false)
+      }
+    }
+    init();
   }, []);
 
   function renderProduct(p) {
