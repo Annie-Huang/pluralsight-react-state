@@ -15,7 +15,7 @@ C:\react\pluralsight-react-state>npm run start
 http://localhost:3000/
 http://localhost:3000/shoes
 http://localhost:3000/shoes2    << page not found
-http://localhost:3000/detail
+http://localhost:3000/shoes/1
 http://localhost:3000/cart
 
 http://localhost:3001/products  << product list
