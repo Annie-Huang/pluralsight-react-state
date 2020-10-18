@@ -3,6 +3,7 @@ import "./App.css";
 import Footer from "./Footer";
 import Header from "./Header";
 import {getProducts} from "./services/productService";
+import Spinner from "./Spinner";
 
 export default function App() {
   // You can see the value of the state in react dev top, click the 'App' and
@@ -10,11 +11,13 @@ export default function App() {
   const [size, setSize] = useState(""); // array destructuring
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getProducts('shoes')
       .then(response => setProducts(response))
-      .catch(e => setError(e));
+      .catch(e => setError(e))
+      .finally(() => setLoading(false)); // I thought finally only called in success. But seems to be called in error as well for promise.
   }, []);
 
   function renderProduct(p) {
@@ -36,6 +39,8 @@ export default function App() {
   // get ErrorBoundary to handle async call error, which it doesn't handle by default.
   // But it only shows in prod. In development, the error stack displays over the error boundary.
   if (error) throw error;
+
+  if (loading) return <Spinner />
 
   return (
     <>
