@@ -25,7 +25,7 @@ export default function useFetch(url) {
           const json = await response.json();
           setData(json);
         } else {
-          throw response
+          throw response;
         }
 
       } catch (e) {

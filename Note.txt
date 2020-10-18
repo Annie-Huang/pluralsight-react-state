@@ -5,7 +5,8 @@ https://github.com/Annie-Huang/pluralsight-react-state
 source file is from the pluralsight zip.
 
 https://reactjs.org/docs/error-boundaries.html
-
+https://github.com/typicode/json-server
+https://medium.com/codingthesmartway-com-blog/create-a-rest-api-with-json-server-36da8680136d
 ======================================
 
 C:\react\pluralsight-react-state>npm install
@@ -13,6 +14,7 @@ C:\react\pluralsight-react-state>npm run start
 
 http://localhost:3000/
 http://localhost:3000/shoes
+http://localhost:3000/shoes2    << page not found
 http://localhost:3000/detail
 http://localhost:3000/cart
 

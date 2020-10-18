@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Spinner from "./Spinner";
 import useFetch from "./services/useFetch";
 import {useParams} from 'react-router-dom';
+import PageNotFound from "./PageNotFound";
 
 export default function Products() {
   // You can see the value of the state in react dev top, click the 'App' and
@@ -33,7 +34,12 @@ export default function Products() {
   // But it only shows in prod. In development, the error stack displays over the error boundary.
   if (error) throw error;
 
-  if (loading) return <Spinner />
+  if (loading) return <Spinner />; // There's nothing wrong with multiple return statements. These act like guard clauses.
+
+  // It will return a [] for products?category=shoes2 because products in db.json is defined as a array.
+  // If it's a object. e.g. products: {...}, it will return as {} and you will not get the .length property.
+  // https://medium.com/codingthesmartway-com-blog/create-a-rest-api-with-json-server-36da8680136d
+  if (products.length === 0) return <PageNotFound />
 
   return (
     <>
