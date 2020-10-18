@@ -4,6 +4,8 @@ https://app.pluralsight.com/library/courses/react-state-managing/table-of-conten
 https://github.com/Annie-Huang/pluralsight-react-state
 source file is from the pluralsight zip.
 
+https://reactjs.org/docs/error-boundaries.html
+
 ======================================
 
 C:\react\pluralsight-react-state>npm install
@@ -35,3 +37,9 @@ When does React Render?
 - parent renders    << the same as prop change
 - context change
 - React won't re-render when a plain variable changes
+
+Four ways to handle http calls:
+- inline                    Call fetch/axios/etc in your component
+- Centralized functions     Call separate function
+- Custom hook               Create and call your own custom hook
+- Library                   Call library (react-query, swr, etc)
