@@ -1,3 +1,5 @@
+// This is specified in the package.json command: e.g.
+//     "start-app": "cross-env REACT_APP_API_BASE_URL=http://localhost:3001/ react-scripts start",
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export async function getProducts(category) {

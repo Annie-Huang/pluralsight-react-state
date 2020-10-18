@@ -1,16 +1,36 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./App.css";
 import Footer from "./Footer";
 import Header from "./Header";
+import {getProducts} from "./services/productService";
 import Spinner from "./Spinner";
-import useFetch from "./services/useFetch";
 
 export default function App() {
   // You can see the value of the state in react dev top, click the 'App' and
   // useState calls are listed in the orcder they're declared.
   const [size, setSize] = useState(""); // array destructuring
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const {data: products, error, loading} = useFetch("products?category=shoes")
+  useEffect(() => {
+    // getProducts('shoes')
+    //   .then(response => setProducts(response))
+    //   .catch(e => setError(e))
+    //   .finally(() => setLoading(false)); // I thought finally only called in success. But seems to be called in error as well for promise.
+
+    async function init() { // Async/await is syntactic sugar over promises. The two can interact.
+      try {
+        const response = await getProducts('shoes');
+        setProducts(response);
+      } catch (e) {
+        setError(e);
+      } finally {
+        setLoading(false)
+      }
+    }
+    init();
+  }, []);
 
   function renderProduct(p) {
     return (
