@@ -12,6 +12,7 @@ C:\react\pluralsight-react-state>npm install
 C:\react\pluralsight-react-state>npm run start
 
 http://localhost:3000/
+http://localhost:3000/shoes
 http://localhost:3000/detail
 http://localhost:3000/cart
 

@@ -1,13 +1,17 @@
 import React, {useState} from "react";
 import Spinner from "./Spinner";
 import useFetch from "./services/useFetch";
+import {useParams} from 'react-router-dom';
 
 export default function Products() {
   // You can see the value of the state in react dev top, click the 'App' and
   // useState calls are listed in the orcder they're declared.
   const [size, setSize] = useState(""); // array destructuring
 
-  const {data: products, error, loading} = useFetch("products?category=shoes")
+  // category is getting from <Route path='/:category' element={<Products />} />
+  const {category} = useParams();
+
+  const {data: products, error, loading} = useFetch("products?category=" + category)
 
   function renderProduct(p) {
     return (

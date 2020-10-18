@@ -7,6 +7,7 @@ import {Routes, Route} from 'react-router-dom';
 import Detail from "./Detail";
 import Cart from "./Cart";
 
+
 export default function App() {
   return (
     <>
@@ -14,7 +15,9 @@ export default function App() {
         <Header />
         <main>
           <Routes>
-            <Route path='/' element={<Products />} />
+            <Route path='/' element={<h1>Welcome to Carved Rock Fitness</h1>} />
+            {/*Display the product's category in the URL using a placeholder.*/}
+            <Route path='/:category' element={<Products />} />
             <Route path='/detail' element={<Detail />} />
             <Route path='/cart' element={<Cart />} />
           </Routes>
