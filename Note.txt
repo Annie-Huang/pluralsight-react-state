@@ -43,3 +43,10 @@ Four ways to handle http calls:
 - Centralized functions     Call separate function
 - Custom hook               Create and call your own custom hook
 - Library                   Call library (react-query, swr, etc)
+
+
+Error boundaries do not catch errors for:
+Event handlers (learn more)
+Asynchronous code (e.g. setTimeout or requestAnimationFrame callbacks)
+Server side rendering
+Errors thrown in the error boundary itself (rather than its children)

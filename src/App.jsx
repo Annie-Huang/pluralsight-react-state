@@ -8,10 +8,13 @@ export default function App() {
   // You can see the value of the state in react dev top, click the 'App' and
   // useState calls are listed in the orcder they're declared.
   const [size, setSize] = useState(""); // array destructuring
-  const [products, setProducts] = useState([]); // array destructuring
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getProducts('shoes').then(response => setProducts(response));
+    getProducts('shoes')
+      .then(response => setProducts(response))
+      .catch(e => setError(e));
   }, []);
 
   function renderProduct(p) {
@@ -29,6 +32,10 @@ export default function App() {
   const filteredProducts = size
     ? products.filter(p => p.skus.find(s => s.size === parseInt(size)))
     : products;
+
+  // get ErrorBoundary to handle async call error, which it doesn't handle by default.
+  // But it only shows in prod. In development, the error stack displays over the error boundary.
+  if (error) throw error;
 
   return (
     <>
