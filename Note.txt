@@ -30,6 +30,7 @@ Controlled component:
     <select id="size" value={size}>     << Now the select is a controlled component. (React controls the selected value).
 
 React Event Handlers:
+--------------------------
 onClick
 onChange
 onHover
@@ -39,6 +40,7 @@ onMouseover
 etc...
 
 When does React Render?
+--------------------------
 - state change      << Can skip render via: shouldComponentUpdate, React.memo (that say, this optimazation are rarely necessary)
 - prop change       << Can skip render via: shouldComponentUpdate, React.memo, PureComponent (that say, this optimazation are rarely necessary)
 - parent renders    << the same as prop change
@@ -46,6 +48,7 @@ When does React Render?
 - React won't re-render when a plain variable changes
 
 Four ways to handle http calls:
+------------------------------------------
 - inline                    Call fetch/axios/etc in your component
 - Centralized functions     Call separate function
 - Custom hook               Create and call your own custom hook
@@ -53,8 +56,22 @@ Four ways to handle http calls:
 
 
 Error boundaries do not catch errors for:
+------------------------------------------------
 Event handlers (learn more)
 Asynchronous code (e.g. setTimeout or requestAnimationFrame callbacks)
 Server side rendering
 Errors thrown in the error boundary itself (rather than its children)
 
+'react-router-dom' got:
+--------------------------
+useParams       << to get parameters value
+useNavigate
+    const navigate = useNavigate();
+    <button className="btn btn-primary" onClick={() => navigate('/cart')}>Add to cart</button>
+
+Link:           << use in template
+    <Link to='/'>
+      <img alt="Carved Rock Fitness" src="/images/logo.png" />
+    </Link>
+NavLink         << use in template
+     <NavLink activeStyle={activeStyle} to='/shoes'>Shoes</NavLink>
