@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import {useNavigate, useParams} from 'react-router-dom';
 import useFetch from "./services/useFetch";
 import Spinner from "./Spinner";
 import PageNotFound from "./PageNotFound";
 
 export default function Detail() {
+  const [sku, setSku] = useState(""); // array destructuring
+
   // category is getting from <Route path='/:category/:id' element={<Detail />} />
   const {id} = useParams();
   const navigate = useNavigate();
@@ -19,6 +21,12 @@ export default function Detail() {
       <h1>{product.name}</h1>
       <p>{product.description}</p>
       <p id="price">${product.price}</p>
+
+      <select id="size" value={sku} onChange={e => setSku(e.target.value)}>
+        <option value="">What size?</option>
+        {product.skus.map(skuItem => <option key={skuItem.sku} value={skuItem.sku}>{skuItem.size}</option>)}
+      </select>
+
       <p>
         <button className="btn btn-primary" onClick={() => navigate('/cart')}>Add to cart</button>
       </p>
