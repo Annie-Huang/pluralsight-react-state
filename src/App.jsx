@@ -7,7 +7,6 @@ import {Routes, Route} from 'react-router-dom';
 import Detail from "./Detail";
 import Cart from "./Cart";
 
-
 export default function App() {
   const [cart, setCart] = useState([]);
 
@@ -19,7 +18,8 @@ export default function App() {
         return items.map(i => i.sku === sku ? {...i, quantity: i.quantity + 1} : i );
 
       } else {
-        return [...items, {id, sku, quantity: 1}]
+        // Return new array with the new item appended
+        return [...items, {id, sku, quantity: 1}];
       }
 
     });
@@ -35,7 +35,7 @@ export default function App() {
             {/*Display the product's category in the URL using a placeholder.*/}
             <Route path='/:category' element={<Products />} />
             <Route path='/:category/:id' element={<Detail addToCart={addToCart} />} />
-            <Route path='/cart' element={<Cart />} />
+            <Route path='/cart' element={<Cart cart={cart} />} />
           </Routes>
         </main>
       </div>

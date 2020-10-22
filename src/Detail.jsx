@@ -29,12 +29,12 @@ export default function Detail({addToCart}) {
 
       <p>
         <button
+          disabled={!sku}
           className="btn btn-primary"
           onClick={() => {
-            addToCart(product.id, product.sku);
+            addToCart(id, sku);
             navigate('/cart');
           }}
-          disabled={!sku}
         >
           Add to cart
         </button>
