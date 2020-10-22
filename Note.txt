@@ -92,3 +92,43 @@ Why is Settings state Async?
 ----------------------------------
 Batching: Batching improve performance by reducing re-render
 Support async rendering: E.g. Typing a textbox is high priority. Display an API call response is lower priority
+
+
+!!!!! Use Function Form to Reference Exisiting state
+---------------------------------------------------
+const [count, setCount] = useState(0);
+
+// Avoid since unreliable
+setCount(count + 1);
+
+// Prefer this – Use a function to reference existing state
+setCount((count) => count + 1);
+
+
+!!!!! Warning: Shallow Copies
+-------------------------------------------------------
+const user = { name: 'Cory’, address: { state: 'California’ } }
+
+// Watch out, it didn't clone the nested address object!
+const userCopy = { ...user };
+
+// This clones the nested address object too
+const userCopy = { ...user, address: {...user.address}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
