@@ -49,7 +49,7 @@ When does React Render?
 
 Four ways to handle http calls:
 ------------------------------------------
-- inline                    Call fetch/axios/etc in your component
+- inline                    Call fetch/axios/etc in your component | Not recommended
 - Centralized functions     Call separate function
 - Custom hook               Create and call your own custom hook
 - Library                   Call library (react-query, swr, etc)
@@ -76,3 +76,19 @@ Link:           << use in template
 NavLink         << use in template
      <NavLink activeStyle={activeStyle} to='/shoes'>Shoes</NavLink>
 
+
+Where to Declare State
+-----------------------------
+Common mistake: declaring state in the wrong spot
+Sign: Hard to consume and share
+Suggestion: Start local, and lift when needed
+    - Declare state in the component that needs it.
+    - Child components need the state --> Pass state down via props
+    - Non-child components need it --> Lift state to common parent.
+    - Passing props getting annoying --> Consider context, Redux, etc.
+
+
+Why is Settings state Async?
+----------------------------------
+Batching: Batching improve performance by reducing re-render
+Support async rendering: E.g. Typing a textbox is high priority. Display an API call response is lower priority
