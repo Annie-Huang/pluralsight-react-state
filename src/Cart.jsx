@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useMemo} from "react";
 import useFetchAll from "./services/useFetchAll";
 import Spinner from "./Spinner";
 
@@ -47,6 +47,12 @@ export default function Cart({ cart, updateQuantity }) {
 
   // If it's an expensive calculation, you can use React's useMemo to memoize expensive calculations
   const numItemsInCart = cart.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);
+  // Must be declared above the returns blow since hooks can't be called conditionally
+  // const numItemsInCart = useMemo(
+  //   () => cart.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0),
+  //   [cart]
+  // );
+
 
   if (loading) return <Spinner />;
   if (error) throw error;
