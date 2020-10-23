@@ -39,12 +39,22 @@ export default function Cart({ cart, updateQuantity }) {
     );
   }
 
+  // function summaryText() {
+  //   return cart.length === 0
+  //     ? 'No Items in cart'
+  //     : `${cart.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0)} items in cart`
+  // }
+
+  // If it's an expensive calculation, you can use React's useMemo to memoize expensive calculations
+  const numItemsInCart = cart.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);
+
   if (loading) return <Spinner />;
   if (error) throw error;
 
   return (
     <section id="cart">
-      <h1>Cart</h1>
+      {/*<h1>{summaryText()}</h1>*/}
+      <h1>{numItemsInCart === 0 ? 'Your cart is empty' : `${numItemsInCart} Item${numItemsInCart > 1 ? 's' : ''} in My Cart`}</h1>
       <ul>{cart.map(renderItem)}</ul>
     </section>
   );
