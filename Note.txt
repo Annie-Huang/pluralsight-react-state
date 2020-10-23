@@ -8,7 +8,8 @@ https://reactjs.org/docs/error-boundaries.html
 https://github.com/typicode/json-server
 https://medium.com/codingthesmartway-com-blog/create-a-rest-api-with-json-server-36da8680136d
 https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator << same as optinal chaining in typescript.
+https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html
 ======================================
 
 C:\react\pluralsight-react-state>npm install
