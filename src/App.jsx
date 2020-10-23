@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./App.css";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -8,7 +8,23 @@ import Detail from "./Detail";
 import Cart from "./Cart";
 
 export default function App() {
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
+
+  // Problem with this is: Default values are evaluated on every render!
+  // const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
+  // Solution: Declare the default using a function. The function will only be run the first time the component render
+  // const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem('cart')));
+  const [cart, setCart] = useState(() => {
+    try { // try and catch is to prevent malformed data stored in local storage.
+      return JSON.parse(localStorage.getItem('cart')) ?? [];  // Nullish coalescing operator (??)
+    } catch {
+      console.error('The cart could not be parsed into JSON');
+      return []
+    }
+  });
+
+
+  useEffect(() => localStorage.setItem('cart', JSON.stringify(cart)), [cart]);
 
   function addToCart(id, sku) {
     setCart(items => {

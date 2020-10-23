@@ -7,6 +7,8 @@ source file is from the pluralsight zip.
 https://reactjs.org/docs/error-boundaries.html
 https://github.com/typicode/json-server
 https://medium.com/codingthesmartway-com-blog/create-a-rest-api-with-json-server-36da8680136d
+https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
 ======================================
 
 C:\react\pluralsight-react-state>npm install
@@ -62,6 +64,12 @@ Asynchronous code (e.g. setTimeout or requestAnimationFrame callbacks)
 Server side rendering
 Errors thrown in the error boundary itself (rather than its children)
 
+The way to get around the last bit is to continue to throw error when you catch error:
+  const { data: products, loading, error } = useFetchAll(urls);
+  if (error) throw error;
+
+
+
 'react-router-dom' got:
 --------------------------
 useParams       << to get parameters value
@@ -94,7 +102,7 @@ Batching: Batching improve performance by reducing re-render
 Support async rendering: E.g. Typing a textbox is high priority. Display an API call response is lower priority
 
 
-!!!!! Use Function Form to Reference Exisiting state
+!!!!! Use Function Form to Reference Existing state
 ---------------------------------------------------
 const [count, setCount] = useState(0);
 
