@@ -21,7 +21,8 @@ export default function Checkout({ cart, emptyCart }) {
   const [touched, setTouched] = useState({}); // touched object has the ID associate to each touched field
 
 
-  // Derived state
+  // Derived state (derived most validation-related values)
+  // Will reduced the amount of state we had to store. | Assures error state is valid because it recalculated on each render.
   const errors = getErrors(address); // errors object is the errors associate to each field
   const isValid = Object.keys(errors).length === 0;
 

@@ -150,6 +150,7 @@ const STATUS = {
 }
 const [status, setStatus] = useState(STATUS.IDLE);      << the form can only be one discrete states at a time.
 
+Form libraries: Formik, React Hook Form
 
 Finite State Machine:
 ------------------------------
