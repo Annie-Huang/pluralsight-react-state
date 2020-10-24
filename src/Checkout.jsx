@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {saveShippingAddress} from "./services/shippingService";
 
 const STATUS = {
   IDLE: "IDLE",
@@ -16,6 +17,7 @@ const emptyAddress = {
 export default function Checkout({ cart }) {
   const [address, setAddress] = useState(emptyAddress);
   const [status, setStatus] = useState(STATUS.IDLE);
+  const [saveError, setSaveError] = useState(null);
 
   function handleChange(e) {
     // With functional set state, React deleted the event before we can access it.
@@ -48,7 +50,14 @@ export default function Checkout({ cart }) {
   async function handleSubmit(event) {
     event.preventDefault();
     setStatus(STATUS.SUBMITTING);
+    try {
+      await saveShippingAddress(address);
+    } catch (e) {
+      setSaveError(e);
+    }
   }
+
+  if (saveError) throw saveError;
 
   return (
     <>
