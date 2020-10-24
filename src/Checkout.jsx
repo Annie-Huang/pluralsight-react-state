@@ -64,6 +64,9 @@ export default function Checkout({ cart, emptyCart }) {
       } catch (e) {
         setSaveError(e);
       }
+
+    } else {
+      setStatus(STATUS.SUBMITTED);
     }
   }
 
@@ -82,6 +85,14 @@ export default function Checkout({ cart, emptyCart }) {
   return (
     <>
       <h1>Shipping Info</h1>
+      {!isValid && status === STATUS.SUBMITTED &&
+        <div role='alert'>
+          <p>Please fix the following errors:</p>
+          <ul>
+            {Object.keys(errors).map(key => <li key={key}>{errors[key]}</li>)}
+          </ul>
+        </div>
+      }
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="city">City</label>
