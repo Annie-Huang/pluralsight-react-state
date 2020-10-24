@@ -54,12 +54,16 @@ export default function Checkout({ cart, emptyCart }) {
   async function handleSubmit(event) {
     event.preventDefault();
     setStatus(STATUS.SUBMITTING);
-    try {
-      await saveShippingAddress(address);
-      emptyCart();
-      setStatus(STATUS.COMPLETED);
-    } catch (e) {
-      setSaveError(e);
+
+    // Only submit the form if it's valid. Otherwise, just set status to submitted.
+    if (isValid) {
+      try {
+        await saveShippingAddress(address);
+        emptyCart();
+        setStatus(STATUS.COMPLETED);
+      } catch (e) {
+        setSaveError(e);
+      }
     }
   }
 
