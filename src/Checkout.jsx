@@ -17,17 +17,20 @@ const emptyAddress = {
 export default function Checkout({ cart, emptyCart }) {
   const [address, setAddress] = useState(emptyAddress);
   const [status, setStatus] = useState(STATUS.IDLE);
-  const [saveError, setSaveError] = useState(null);
+  const [saveError, setSaveError] = useState(null); // saveError is the error from the API call when clicking the save button
+  const [touched, setTouched] = useState({}); // touched object has the ID associate to each touched field
+
 
   // Derived state
-  const errors = getErrors(address);
+  const errors = getErrors(address); // errors object is the errors associate to each field
   const isValid = Object.keys(errors).length === 0;
 
   function handleChange(e) {
     // With functional set state, React deleted the event before we can access it.
     //   so it is necessary have this when accessing the event in functional set state calls.
+    //   The error gives you good suggestion to resolve this so don't worry.
     // This isn't necessary in React 17 or newer since React 17 no longer pools events
-    e.persist(); // persist the event
+    e.persist(); // persist the event. https://reactjs.org/docs/legacy-event-pooling.html
 
     setAddress((curAddress) => {
       // if(e.currentTarget.id === 'city') {
@@ -43,13 +46,18 @@ export default function Checkout({ cart, emptyCart }) {
     })
   }
 
-  // useEffect(() => {
-  //   console.log(address);
-  // }, [address])
-
   function handleBlur(event) {
-    // TODO
+    event.persist();
+    setTouched(cur => ({
+      ...cur,
+      [event.target.id]: true
+    }))
   }
+
+  useEffect(() => {
+    console.log('address=', address);
+    console.log('touched=', touched);
+  }, [address, touched])
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -71,7 +79,7 @@ export default function Checkout({ cart, emptyCart }) {
   }
 
   function getErrors(address) {
-    const result = {};
+    const result = {}; // Keep error as object for easy access, same as touched
     if (!address.city) result.city = 'City is required';
     if (!address.country) result.country = 'Country is required';
     return result;
