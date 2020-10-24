@@ -125,9 +125,29 @@ const userCopy = { ...user };
 const userCopy = { ...user, address: {...user.address}}
 
 
+Form validation in React:
+---------------------------------
+Where to display errors By field, at top                << by field and at top
+When to display errors onSubmit, onBlur, onChange       << all three
+When to disable submit Until clean, submitting, never   << choose to do while submitting
+When to revalidate onSubmit, onChange, onBlur           << all three
 
+State that we need:
+touched         What fields have been touched?      << stored as "touched"
+submitted       Has the form been submitted?        << stored as "status"
+isSubmitting    Is a form submission in progress?   << (same as above)
+isValid         Is the form currently valid?        << derive
+errors          What are the errors for each field? << (same as above)
+dirty           Has the form changed?               << (same as above)
 
-
+// Using a single status “enum” instead     << enum is a typescript concept, but you can create a js version, using object.
+const STATUS = {
+  IDLE: "IDLE",
+  SUBMITTING: "SUBMITTING",
+  SUBMITTED: "SUBMITTED",
+  COMPLETED: "COMPLETED",
+}
+const [status, setStatus] = useState(STATUS.IDLE);      << the form can only be one discrete states at a time.
 
 
 
