@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 
 // Declaring outside component to avoid recreation on each render
 const emptyAddress = {
@@ -10,8 +10,28 @@ export default function Checkout({ cart }) {
   const [address, setAddress] = useState(emptyAddress);
 
   function handleChange(e) {
-    // TODO
+    // With functional set state, React deleted the event before we can access it.
+    //   so it is necessary have this when accessing the event in functional set state calls.
+    // This isn't necessary in React 17 or newer since React 17 no longer pools events
+    e.persist(); // persist the event
+
+    setAddress((curAddress) => {
+      // if(e.currentTarget.id === 'city') {
+      //   return {...curAddress, city: e.currentTarget.value}
+      // }
+
+      // So much cleaner approach. Javascript's computed property to reference a property using a variable.
+      // It means use the inptu's id to determine which property to set (using computed property syntax)
+      return {
+        ...curAddress,
+        [e.target.id]: e.target.value
+      }
+    })
   }
+
+  // useEffect(() => {
+  //   console.log(address);
+  // }, [address])
 
   function handleBlur(event) {
     // TODO
