@@ -150,7 +150,10 @@ const STATUS = {
 const [status, setStatus] = useState(STATUS.IDLE);      << the form can only be one discrete states at a time.
 
 
-
+Finite State Machine:
+------------------------------
+Only one state can be active at the same time. The machine transitions from one state to another.
+- XState. open source Finite State Machine
 
 
 

@@ -19,6 +19,10 @@ export default function Checkout({ cart, emptyCart }) {
   const [status, setStatus] = useState(STATUS.IDLE);
   const [saveError, setSaveError] = useState(null);
 
+  // Derived state
+  const errors = getErrors(address);
+  const isValid = Object.keys(errors).length === 0;
+
   function handleChange(e) {
     // With functional set state, React deleted the event before we can access it.
     //   so it is necessary have this when accessing the event in functional set state calls.
@@ -57,6 +61,13 @@ export default function Checkout({ cart, emptyCart }) {
     } catch (e) {
       setSaveError(e);
     }
+  }
+
+  function getErrors(address) {
+    const result = {};
+    if (!address.city) result.city = 'City is required';
+    if (!address.country) result.country = 'Country is required';
+    return result;
   }
 
   if (saveError) throw saveError;
